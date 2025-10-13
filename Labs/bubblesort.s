@@ -73,21 +73,24 @@ cocktail_sort:
 @ TODO Your implementation here 
 
 @ ============================================================================
-@ EXAMPLE USAGE AND TEST DATA
+@ EXAMPLE USAGE AND TEST DATA This section must be removed if you use the main.c
+@ as test harness. If you do not use main.c, then you can keep this section, but it 
+@ does not print out the sorted array, so you will need to use debugger to inspect 
+@ registers to verify that the array is sorted.
 @ ============================================================================
 
-_start:
-    @ Test the bubble sort function
-    ldr     r0, =test_array     @ Load array address
-    ldr     r1, =array_size     @ Load array size address
-    ldr     r1, [r1]            @ Dereference to get actual size
+@_start:
+     @ Test the bubble sort function
+@    ldr     r0, =test_array     @ Load array address
+@    ldr     r1, =array_size     @ Load array size address
+@    ldr     r1, [r1]            @ Dereference to get actual size
 
-    bl      bubble_sort         @ Call bubble sort function
+@    bl      bubble_sort         @ Call bubble sort function
 
-    @ Exit program
-    mov     r7, #1              @ System call number for exit
-    mov     r0, #0              @ Exit status
-    svc     #0                  @ System call
+@    @ Exit program
+@    mov     r7, #1              @ System call number for exit
+@    mov     r0, #0              @ Exit status
+@    svc     #0                  @ System call
 
 @ ============================================================================
 @ DATA SECTION
