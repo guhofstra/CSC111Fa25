@@ -1,13 +1,12 @@
-/*
- * ARMv7 Assembly Bubble Sort Implementation
- * Sorts an array of 32-bit signed integers in ascending order
- * 
- * Function: bubble_sort
- * Parameters:
- *   r0 = pointer to array (base address)
- *   r1 = array length (number of elements)
- * Returns: nothing (sorts in place)
- */
+@ ============================================================================  
+@ BUBBLE SORT
+@ Sorts an array of 32-bit signed integers in ascending order
+@ Function: bubble_sort
+@ Parameters:
+@   r0 = pointer to array (base address)
+@   r1 = array length (number of elements)
+@  Returns: nothing (sorts in place)
+@ ============================================================================
 
     .text
     .arch armv7-a
@@ -59,3 +58,75 @@ bubble_sort_done:
     pop    {r4, r5, r6, r7, pc}
 
     .size bubble_sort, .-bubble_sort
+
+
+@ ============================================================================  
+@ COCKTAIL SORT (Bidirectional Bubble Sort)
+@ ============================================================================
+
+cocktail_sort:
+@ TODO Your implementation here. Keep the same code for Forward pass (left to right), 
+@ and adding a separate Backward pass (right to left) 
+
+@ ============================================================================
+@ EXAMPLE USAGE AND TEST DATA This section must be removed if you use the main.c
+@ as test harness. If you do not use main.c, then you can keep this section, but it 
+@ does not print out the sorted array, so you will need to use debugger to inspect 
+@ registers to verify that the array is sorted.
+@ ============================================================================
+
+@_start:
+     @ Test the bubble sort function
+@    ldr     r0, =test_array     @ Load array address
+@    ldr     r1, =array_size     @ Load array size address
+@    ldr     r1, [r1]            @ Dereference to get actual size
+
+@    bl      bubble_sort         @ Call bubble sort function
+
+@    @ Exit program
+@    mov     r7, #1              @ System call number for exit
+@    mov     r0, #0              @ Exit status
+@    svc     #0                  @ System call
+
+@ ============================================================================
+@ DATA SECTION
+@ ============================================================================
+
+.data
+.align 4
+
+@ Test array with unsorted integers
+test_array:
+    .word   64, 34, 25, 12, 22, 11, 90, 5, 77, 30
+
+@ Array size (number of elements)
+array_size:
+    .word   10
+
+@ Alternative test arrays for different scenarios
+
+@ Already sorted array (best case)
+sorted_array:
+    .word   1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+sorted_size:
+    .word   10
+
+@ Reverse sorted array (worst case)  
+reverse_array:
+    .word   10, 9, 8, 7, 6, 5, 4, 3, 2, 1
+reverse_size:
+    .word   10
+
+@ Small array
+small_array:
+    .word   3, 1, 2
+small_size:
+    .word   3
+
+@ Single element array
+single_array:
+    .word   42
+single_size:
+    .word   1
+
+.end
